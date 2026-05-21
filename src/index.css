@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+body{
+  margin: 0;
+  background-color: #0E1216;
+}
+
+:root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --card: #16161f;
+    --border: #2a2a3d;
+    --accent: #7cffd4;
+    --accent2: #ff6b6b;
+    --accent3: #ffd166;
+    --text: #e8e8f0;
+    --muted: #6b6b8a;
+    --font-display: 'Syne', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
