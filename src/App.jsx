@@ -1,14 +1,45 @@
 import "./index.css";
 import "./App.css";
 import profileImg from "./assets/singam.jpeg";
-import { useState, useEffect } from "react";
-import {GitHubCalendar} from "react-github-calendar";
+import { useState, useEffect, useRef } from "react";
+import { GitHubCalendar } from "react-github-calendar";
 
 function App() {
-  const [username, setusername] = useState("");
+  const [username, setusername] = useState("Jiyavur14");
   const [profile, setprofile] = useState(null);
   const [events, setEvents] = useState([]);
   const [displayName, setDisplayName] = useState("");
+  const [shownotice, setshownotice] = useState(false);
+  const githubRef = useRef(null);
+
+  useEffect(() => {
+    let timeout;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setshownotice(true);
+
+          timeout = setTimeout(() => {
+            setshownotice(false);
+          }, 15000);
+        }
+      },
+      {
+        threshold: 0.3,
+      },
+    );
+
+    if (githubRef.current) {
+      observer.observe(githubRef.current);
+    }
+    return () => {
+      if (githubRef.current) {
+        observer.unobserve(githubRef.current);
+      }
+
+      clearTimeout(timeout);
+    };
+  }, []);
 
   async function loadActivity() {
     try {
@@ -35,6 +66,10 @@ function App() {
       console.log("Error:", error.message);
     }
   }
+
+  useEffect(() => {
+    loadActivity();
+  }, []);
 
   useEffect(() => {
     if (!profile) return;
@@ -392,13 +427,23 @@ function App() {
         </div>
 
         <div className="github-body pt-8">
-          <div className="gb-1 flex gap-4">
+          <div className="gb-1 flex gap-4 relative" ref={githubRef}>
+            {shownotice && (
+              <p className="search-note floating-note">
+                🔍 Try searching your GitHub username
+              </p>
+            )}
             <input
               type="text"
               className="inp1"
               value={username}
               onChange={(e) => {
                 setusername(e.target.value);
+              }}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  loadActivity();
+                }
               }}
             />
             <button onClick={() => loadActivity()}>Load Activity</button>
@@ -418,7 +463,6 @@ function App() {
                 .filter((event) => event.type === "PushEvent")
                 .slice(0, 8)
                 .map((event) => {
-                  console.log(event);
                   return (
                     <div
                       className="commit-feed flex flex-row gap-6"
@@ -486,17 +530,67 @@ function App() {
             </p>
             <div className="calendar-box pt-3 pl-5 pr-5 pb-4 m-[0]">
               <div className="cb1">
-              <GitHubCalendar
-                username={username || "Jiyavur14"}
-                colorScheme="dark"
-                fontSize={14}
-                blockSize={14}
-                blockMargin={5}
-              />
+                <GitHubCalendar
+                  username={username || "Jiyavur14"}
+                  colorScheme="dark"
+                  fontSize={14}
+                  blockSize={14}
+                  blockMargin={5}
+                />
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="contact-us flex gap-30">
+        <div className="cu-leftside flex flex-col w-[45%]">
+          <div className="phead flex items-center gap-2">
+            <p className="pline"></p>
+            <p className="port">GET IN TOUCH</p>
+          </div>
+
+          <div className="pbody">
+            <p>Let's Build</p>
+            <p>Something</p>
+            <p className="outlin">Remarkable</p>
+          </div>
+
+          <p className="hero-intro">
+            Always excited to collaborate on interesting projects. Whether you
+            have a startup idea, need a technical co-founder, or want to discuss
+            open source — let's talk.
+          </p>
+
+          <div className="cu-box1 p-4 flex gap-4 mb-2">
+            <span>✉</span>
+            jiyavur14@gmail.com
+          </div>
+
+          <div className="cu-box2 p-4 flex gap-4 mb-2">
+            <span>⌥</span>
+            jiyavur14@gmail.com
+          </div>
+
+          <div className="cu-box3 p-4 flex gap-4 mb-2">
+            <span>in</span>
+            jiyavur14@gmail.com
+          </div>
+        </div>
+        <div className="cu-rightside w-[50%]">
+          <label htmlFor="">NAME</label>
+          <input type="text" className="cu p-4 mb-2 w-[100%]" placeholder="Jiyavur Rahman S"/>
+           <label htmlFor="">EMAIL</label>
+          <input type="text" className="cu p-4 mb-2" placeholder="Jiyavur@gmail.com"/>
+           <label htmlFor="">MESSAGE</label>
+          <textarea className="cu cu1 p-4" placeholder="tell me about yourself...."></textarea>
+          <input type="submit" value="SEND MESSAGE →" className="cu2 p-4 mb-2 mt-4"/>
+        </div>
+      </div>
+
+      <div className="footer flex p-10 justify-between items-center">
+        <p>© 2026 — Built with ☕ & curiosity</p>
+        <p>Designed and Developed By - JIYAVUR RAHMAN S (that's me)</p>
       </div>
     </>
   );
