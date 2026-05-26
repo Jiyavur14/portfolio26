@@ -720,7 +720,7 @@
 .gb-3{
     border:1px solid #383c3bb4;
     width: 69%;
-    height: 200px;
+    height: 267px;
     border-radius: 5px;
 }
 
@@ -731,3 +731,33 @@
 }
 
 
+.react-github-calendar{
+    width: 100%;
+}
+
+.calendar-box {
+    overflow-x: auto;
+    width: 100%;
+    overflow-y: hidden;
+    border-radius: 8px;
+    color: #7cffd4;
+    
+}
+
+
+.calendar-box div::-webkit-scrollbar{
+    height:7px;
+}
+
+.calendar-box div::-webkit-scrollbar-track{
+    background: #111118;
+}
+
+.calendar-box div::-webkit-scrollbar-thumb{
+    background: #2e2e41c5;
+    border-radius: 20px;
+}
+
+.calendar-box div::-webkit-scrollbar-thumb:hover{
+    background: #39413e;
+}

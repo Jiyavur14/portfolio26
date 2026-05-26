@@ -2,6 +2,7 @@ import "./index.css";
 import "./App.css";
 import profileImg from "./assets/singam.jpeg";
 import { useState, useEffect } from "react";
+import {GitHubCalendar} from "react-github-calendar";
 
 function App() {
   const [username, setusername] = useState("");
@@ -417,6 +418,7 @@ function App() {
                 .filter((event) => event.type === "PushEvent")
                 .slice(0, 8)
                 .map((event) => {
+                  console.log(event);
                   return (
                     <div
                       className="commit-feed flex flex-row gap-6"
@@ -427,8 +429,8 @@ function App() {
                       </p>
                       <div className="cf-2 flex flex-col">
                         <p className="cf-msg">
-                          Pushed {event.payload.commits?.length || 0} commit(s)
-                          to <span>{event.repo.name}</span>
+                          Pushed to <span>{event.repo.name}</span> on{" "}
+                          <span>{event.payload.ref.split("/").pop()}</span>
                         </p>
                         <p className="cf-time">
                           {new Date(event.created_at).toLocaleString("en-GB", {
@@ -440,7 +442,6 @@ function App() {
                             minute: "2-digit",
                           })}
                         </p>
-                        console.log(event);
                       </div>
                     </div>
                   );
@@ -480,9 +481,20 @@ function App() {
           </div>
 
           <div className="gb-3 mt-5 flex flex-col">
-            <p className="pt-4 pl-5 pb-4">
+            <p className="pt-4 pl-5 pb-1 m-[0]">
               Contribution Activity — Last 12 months (simulated)
             </p>
+            <div className="calendar-box pt-3 pl-5 pr-5 pb-4 m-[0]">
+              <div className="cb1">
+              <GitHubCalendar
+                username={username || "Jiyavur14"}
+                colorScheme="dark"
+                fontSize={14}
+                blockSize={14}
+                blockMargin={5}
+              />
+              </div>
+            </div>
           </div>
         </div>
       </div>
