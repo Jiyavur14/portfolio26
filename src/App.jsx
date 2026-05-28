@@ -1,5 +1,7 @@
 import "./index.css";
 import "./App.css";
+import Lenis from "lenis";
+import emailjs from "@emailjs/browser";
 import profileImg from "./assets/singam.jpeg";
 import { useState, useEffect, useRef } from "react";
 import { GitHubCalendar } from "react-github-calendar";
@@ -10,7 +12,26 @@ function App() {
   const [events, setEvents] = useState([]);
   const [displayName, setDisplayName] = useState("");
   const [shownotice, setshownotice] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const githubRef = useRef(null);
+
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      smoothWheel: true,
+    });
+
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   useEffect(() => {
     let timeout;
@@ -21,7 +42,7 @@ function App() {
 
           timeout = setTimeout(() => {
             setshownotice(false);
-          }, 15000);
+          }, 4000);
         }
       },
       {
@@ -101,31 +122,63 @@ function App() {
     return () => clearInterval(interval);
   }, [profile]);
 
+  function sendEmail(e) {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_fn3ihdq",
+        "template_iu4b057",
+        e.target,
+        "nMAVtRGDVm4nnnlXG",
+      )
+      .then(() => {
+        alert("Message sent successfully!");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert("Failed to send message");
+      });
+
+    e.target.reset();
+  }
+
   return (
     <>
-      <div className="nav-bar flex justify-between">
-        <h3 className="nav-logo text-[var(--text)] ">Jiyavur Rahman S</h3>
-        <div className="nav-links flex gap-[2.5rem]">
-          <ul className="flex gap-[2.5rem]">
-            <ol>
-              <a href="">Skills</a>
-            </ol>
-            <ol>
-              <a href="">Projects</a>
-            </ol>
-            <ol>
-              <a href="">Github</a>
-            </ol>
-            <ol>
-              <a href="" className="con">
-                Contact
-              </a>
-            </ol>
-          </ul>
+      <div className="h-[80px]">
+        <div className="nav-bar flex justify-between fixed top-0 left-0 w-full z-50">
+          <h3 className="nav-logo text-[var(--text)] ">Jiyavur Rahman S</h3>
+
+          <div className="hamburger " onClick={() => setMenuOpen(!menuOpen)}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div
+            className={`nav-links flex gap-[2.5rem] ${menuOpen ? "active" : ""}`}
+          >
+            <ul className="flex gap-[2.5rem]">
+              <ol>
+                <a href="#skills-section">Skills</a>
+              </ol>
+              <ol>
+                <a href="#projects-section">Projects</a>
+              </ol>
+              <ol>
+                <a href="#github-section">Github</a>
+              </ol>
+              <ol>
+                <a href="#contact-section" className="con">
+                  Contact
+                </a>
+              </ol>
+            </ul>
+          </div>
         </div>
       </div>
 
-      <div className="status">
+      <div className="status pt-[100px] mb-4">
         <span className="dot"></span>
         <h4>Available For Work</h4>
       </div>
@@ -143,14 +196,23 @@ function App() {
           </div>
 
           <div className="hero-intro">
-            <p>FrontEnd Developer specializing in building </p>
-            <p>performant, accessible and beautiful web applications.</p>
-            <p>I turn complex problems into elegant solutions.</p>
+            <p>
+              I'm a FrontEnd Developer specializing in building performant,
+              accessible and beautiful web applications. I turn complex problems
+              into elegant solutions.
+            </p>
           </div>
 
           <div className="hero-buttons flex gap-6">
-            <button className="b1">View Projects</button>
-            <button className="b2">Github Activity ↓</button>
+            <a href="#projects-section">
+              <button className="b1">View Projects</button>
+            </a>
+            <a href="#github-section">
+              <button className="b2">Github Activity ↓</button>
+            </a>
+            <a href="public\JIYAVUR RAHMAN S - RESUME (1).pdf">
+              <button className="resume-btn">Download Resume ↓</button>
+            </a>
           </div>
         </div>
 
@@ -252,7 +314,10 @@ function App() {
         </div>
       </div>
 
-      <div className="tools-tech flex flex-col">
+      <div
+        className="tools-tech flex flex-col scroll-mt-[65px]"
+        id="skills-section"
+      >
         <div className="tthead1 flex gap-2 items-center">
           <p className="gline"></p>
           <p className="gtext">Expertise</p>
@@ -296,7 +361,7 @@ function App() {
         </div>
       </div>
 
-      <div className="projects ">
+      <div className="projects scroll-mt-[65px]" id="projects-section">
         <div className="phead flex items-center gap-2">
           <p className="pline"></p>
           <p className="port">PORTFOLIO</p>
@@ -415,7 +480,7 @@ function App() {
         </div>
       </div>
 
-      <div className="github-section">
+      <div className="github-section scroll-mt-[40px]" id="github-section">
         <div className="phead flex items-center gap-2">
           <p className="pline"></p>
           <p className="port">LIVE FEED</p>
@@ -543,7 +608,7 @@ function App() {
         </div>
       </div>
 
-      <div className="contact-us flex gap-30">
+      <div className="contact-us flex gap-30" id="contact-section">
         <div className="cu-leftside flex flex-col w-[45%]">
           <div className="phead flex items-center gap-2">
             <p className="pline"></p>
@@ -556,41 +621,68 @@ function App() {
             <p className="outlin">Remarkable</p>
           </div>
 
-          <p className="hero-intro">
+          <p className="hero-introo">
             Always excited to collaborate on interesting projects. Whether you
             have a startup idea, need a technical co-founder, or want to discuss
             open source — let's talk.
           </p>
 
-          <div className="cu-box1 p-4 flex gap-4 mb-2">
-            <span>✉</span>
-            jiyavur14@gmail.com
-          </div>
+          <a href="mailto:jiyavurrahman80@gmail.com">
+            <div className="cu-box1 cub p-4 flex gap-4 mb-2">
+              <span>✉</span>
+              jiyavurrahman80@gmail.com
+            </div>
+          </a>
 
-          <div className="cu-box2 p-4 flex gap-4 mb-2">
-            <span>⌥</span>
-            jiyavur14@gmail.com
-          </div>
+          <a href="https://github.com/Jiyavur14" target="_blank">
+            <div className="cu-box2 cub p-4 flex gap-4 mb-2">
+              <span>⌥</span>
+              github.com/Jiyavur14
+            </div>
+          </a>
 
-          <div className="cu-box3 p-4 flex gap-4 mb-2">
-            <span>in</span>
-            jiyavur14@gmail.com
-          </div>
+          <a
+            href="https://www.linkedin.com/in/jiyavur-rahman-s-34393728b/?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bieo5lD7aRtGpYPi%2FK%2FP0qA%3D%3D"
+            target="_blank"
+          >
+            <div className="cu-box3 cub p-4 flex gap-4 mb-2">
+              <span>in</span>
+              www.linkedin.com/in/jiyavur-rahman-s
+            </div>
+          </a>
         </div>
-        <div className="cu-rightside w-[50%]">
+        <form action="" onSubmit={sendEmail} className="cu-rightside w-[50%]">
           <label htmlFor="">NAME</label>
-          <input type="text" className="cu p-4 mb-2 w-[100%]" placeholder="Jiyavur Rahman S"/>
-           <label htmlFor="">EMAIL</label>
-          <input type="text" className="cu p-4 mb-2" placeholder="Jiyavur@gmail.com"/>
-           <label htmlFor="">MESSAGE</label>
-          <textarea className="cu cu1 p-4" placeholder="tell me about yourself...."></textarea>
-          <input type="submit" value="SEND MESSAGE →" className="cu2 p-4 mb-2 mt-4"/>
-        </div>
+          <input
+            type="text"
+            name="user_name"
+            className="cu p-4 mb-2 w-[100%] text-white"
+            placeholder="Jiyavur Rahman S"
+          />
+          <label htmlFor="">EMAIL</label>
+          <input
+            type="text"
+            name="user_email"
+            className="cu p-4 mb-2"
+            placeholder="Jiyavur@gmail.com"
+          />
+          <label htmlFor="">MESSAGE</label>
+          <textarea
+            className="cu cu1 p-4"
+            name="message"
+            placeholder="tell me about yourself...."
+          ></textarea>
+          <button type="submit" className="cu2 p-4 mb-2 mt-4">
+            SEND MESSAGE →
+          </button>
+        </form>
       </div>
 
       <div className="footer flex p-10 justify-between items-center">
         <p>© 2026 — Built with ☕ & curiosity</p>
-        <p>Designed and Developed By - JIYAVUR RAHMAN S (that's me)</p>
+        <p>
+          Designed and Developed By - JIYAVUR <span>RAHMAN</span> S (that's me)
+        </p>
       </div>
     </>
   );

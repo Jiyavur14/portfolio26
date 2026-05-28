@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @import './index.css';
 
+html{
+  scroll-behavior: smooth;
+}
+
 .nav-logo{
     letter-spacing: -0.02em;
     font-size: 1.3rem;
@@ -8,10 +12,14 @@
     font-family: var(--font-display);
     line-height: 1;
     text-decoration: none;
+
 }
 
 .nav-bar{
     padding: 1.4rem 3rem;
+    backdrop-filter: blur(10px);
+    background: rgba(10,10,15,0.7);
+    border-bottom: 1px solid #7cffd4;
 }
 
 .nav-links a:not(.con) {
@@ -139,7 +147,11 @@
 .hero-intro{
     display: flex;
     flex-direction: column;
-    padding: .1rem 1.4rem 3rem 3rem;
+    padding-top: 0;
+    padding-bottom: 5px;
+    padding-left: 3rem;
+    padding-right: 27rem;
+    padding-bottom: 2rem;
     color:var(--muted);
     font-family: var(--font-mono);
     word-spacing: 2px;
@@ -147,10 +159,11 @@
     text-decoration: none;
     line-height: 1.8;
     font-size: 0.88rem;
+
 }
 
 .hero-buttons{
-    padding: 1.4rem 3rem;
+    padding: .5rem 1.4rem 3rem 3rem;
     box-sizing: border-box;
 }
 
@@ -186,6 +199,81 @@
     border-radius: 2px;
     transition: background-color .5s;
     transition: border .5s;
+}
+
+.resume-btn{
+    position: relative;
+    padding: 0.69rem 1.8rem;
+    border-radius: 3px;
+    background: var(--accent);
+    color: var(--bg);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    overflow: hidden;
+    z-index: 1;
+    font-family: var(--font-mono);
+    transition: all 0.3s ease;
+    letter-spacing: .4px;
+    text-transform: uppercase;
+}
+
+.resume-btn::before{
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+
+    background: linear-gradient(
+        90deg,
+        red,
+        orange,
+        yellow,
+        lime,
+        cyan,
+        blue,
+        violet,
+        red
+    );
+
+    background-size: 400%;
+    z-index: -2;
+
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    animation: rgbBorder 4s linear infinite;
+}
+
+.resume-btn::after{
+    content: "";
+    position: absolute;
+    inset: 2px;
+    background: var(--accent);
+    border-radius: inherit;
+    z-index: -1;
+}
+
+.resume-btn:hover{
+    transform: translateY(-3px);
+    color: var(--accent);
+}
+
+.resume-btn:hover::before{
+    opacity: 1;
+}
+
+.resume-btn:hover::after{
+    background: var(--bg);
+}
+
+@keyframes rgbBorder{
+    0%{
+        background-position: 0%;
+    }
+
+    100%{
+        background-position: 400%;
+    }
 }
 
 .b2:hover{
@@ -839,10 +927,9 @@
 }
 
 
-.hero-intro{
+.hero-introo{
     display: flex;
     flex-direction: column;
-    padding-left: 1px;
     color:var(--muted);
     font-family: var(--font-mono);
     word-spacing: 2px;
@@ -870,11 +957,26 @@
     letter-spacing: 1px;
 }
 
+
 .cu-rightside input{
     font-size: 12px;
-    color: var(--muted);
+    color: white;
     font-family: var(--font-mono);
     letter-spacing: 1px;
+}
+
+.cu-rightside input:hover{
+    border-color: white;
+}
+
+.cu{
+    color: white !important;
+    -webkit-text-fill-color: white !important;
+}
+
+.cu::placeholder{
+    color: var(--muted) !important;
+    -webkit-text-fill-color: var(--muted);
 }
 
 .cu1{
@@ -882,11 +984,18 @@
     color: var(--muted);
     resize: none;
 }
+.cu1:hover{
+    border-color: white;
+}
+
+.cub:hover{
+    border-color: white;
+}
 
 
 
 .cu2{
-    color: rgb(0, 0, 0);
+    color: var(--bg);
     font-family: var(--font-mono);
     border: 1px solid #383c3bb4;
     border-radius: 4px;
@@ -905,7 +1014,8 @@
 
 .cu2:hover{
     background-color: var(--bg);
-    color:#7cffd4;;
+    color:#7cffd4;
+    border-color: #7cffd4;
 
 }
 
@@ -913,5 +1023,287 @@
     height: 50px;
     color: var(--muted);
     font-size: 13px;
-    
+    font-family: var(--font-mono);   
+}
+
+.footer span{
+    letter-spacing: 1.2px;
+}
+
+
+
+@media (max-width:768px){
+
+    *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+    .nav-bar{
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        width: 100%;
+        position: relative;
+    }
+
+    .nav-links{
+    position: absolute;
+    top: 70px;
+    left: 0;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    width: 100%;
+    background: #111118;
+
+    overflow: hidden;
+
+    max-height: 0;
+    opacity: 0;
+
+    transform: translateY(-15px);
+
+    transition:
+      max-height 0.5s ease,
+      opacity 0.4s ease,
+      transform 0.4s ease;
+
+    z-index: 100;
+}
+
+.nav-links.active{
+    max-height: 300px;
+    opacity: 1;
+
+    transform: translateY(0);
+
+    padding: 1rem;
+}
+
+.nav-links ul{
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem !important;
+    width: 100%;
+}
+
+    .hamburger{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+    }
+
+    .hamburger span{
+        width: 25px;
+        height: 3px;
+        background: #7cffd4;
+        border-radius: 10px;
+        transition: 0.3s ease;
+    }
+
+    .hamburger:hover span{
+        background: white;
+    }
+
+.hero-body{
+    flex-direction: column;
+    padding: 1rem;
+    overflow-x: hidden;
+}
+
+
+.code-card{
+    width: 100%;
+    max-width: 350px;
+}
+
+
+.hero-right{
+    padding-right: 0 !important;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-head{
+    font-size: 2.2rem;
+    padding: 0;
+    line-height: 0.95;
+}
+
+
+.status{
+    margin-top: -120px;
+    margin-left: 12px;
+    margin-bottom: -1px;
+    width: 180px;
+}
+
+.status h4{
+    font-size: 10px;
+    width:150px;
+}
+
+body{
+    overflow-x: hidden;
+}
+
+.hero-intro{
+    display: flex;
+    padding-left: 0;
+    padding-top: .5rem;
+    padding-right: 1rem;
+    padding-bottom: .5rem;
+    color:var(--muted);
+    font-family: var(--font-mono);
+    letter-spacing: .2px;
+    text-decoration: none;
+    line-height: 1.4;
+    font-size: 0.88rem;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    padding-bottom: 1rem;
+    box-sizing: border-box;
+}
+
+
+.hero-buttons a:first-child,
+.hero-buttons a:nth-child(2) {
+    flex: 1;
+}
+
+.hero-buttons a:first-child .b1,
+.hero-buttons a:nth-child(2) .b2 {
+    width: 100%;
+    text-align: center;
+}
+
+/* Target the anchor tag, not the button */
+.hero-buttons a:last-child {
+    width: 100%;
+}
+
+.hero-buttons a:last-child .resume-btn {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-buttons .b1{
+    border: 2px solid rgba(169, 165, 165, 0.536);
+    background-color: var(--bg);
+    color: white;
+    padding: 10px 20px;
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size:15px;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background-color .5s;
+    transition: border .5s;
+}
+
+.hero-right {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-right: 0 !important;
+}
+
+.code-card {
+    width: 100%;
+    max-width: 100%;
+}
+
+
+.tools-tech{
+    width: 100%;
+    height:390px;
+    padding: 2rem 1rem;
+    color: white;
+}
+
+.tthead2 {
+   padding-top: 15px;
+   padding-bottom: 10px;
+   font-family: var(--font-display);
+   font-size: 35px;
+   font-weight: 900;
+}
+
+
+.skill-box{
+    padding: px;
+}
+
+.ttbody{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.projects{
+     width: 100%;
+     padding: 2rem 1rem ;
+}
+
+.pbody{
+    font-size: 35px;
+    line-height: 10;
+    padding-top: 8px;
+    width: 100%;
+}
+
+.pbody p{
+    line-height: 40px;
+}
+
+.pcont{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.pcon1,.pcon2,.pcon3{
+    padding-left: -3px;
+    border-radius: 15px;
+}
+
+.github-section{
+    padding: 2rem 1rem;
+}
+
+.github-body{
+    display: flex;
+    flex-direction: column;
+}
+
+.gb-2{
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.gb-1 input{
+   width: 60%;
+   padding: 5px;
+   background-color: #0400ff;
+}
+
+.gb-1 button{
+    width: 40%;
+}
+
 }
