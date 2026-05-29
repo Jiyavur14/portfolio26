@@ -122,8 +122,25 @@ function App() {
     return () => clearInterval(interval);
   }, [profile]);
 
-  function sendEmail(e) {
+function sendEmail(e) {
     e.preventDefault();
+
+    const name = e.target.user_name.value.trim();
+    const email = e.target.user_email.value.trim();
+    const message = e.target.message.value.trim();
+
+    // 1. Check empty fields
+    if (!name || !email || !message) {
+      alert("Please fill in all fields before sending.");
+      return;
+    }
+
+    // 2. Check email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      alert("Please enter a valid email address.");
+      return;
+    }
 
     emailjs
       .sendForm(
