@@ -648,23 +648,27 @@ html{
     position: relative;
 }
 
-.commit-feed{
+.commit-feed {
     border-bottom: 1px solid #383c3bb4;
     width: 100%;
-    padding:14px 14px 10px 20px;
+    padding: 14px 14px 10px 20px;
     color: var(--muted);
     font-family: var(--font-mono);
     font-size: 14px;
+    align-items: flex-start; /* ADD THIS */
 }
 
-.commit-feed .arrow{
+.commit-feed .arrow {
     width: 30px;
-    height:30px;
+    height: 30px;
+    min-width: 30px;  /* ADD THIS */
+    min-height: 30px; /* ADD THIS */
+    flex-shrink: 0;   /* ADD THIS */
     border: 1px solid #383c3bb4;
     border-radius: 5px;
     color: var(--accent);
     box-shadow: 0 0 10px rgba(124,255,212,0.4);
-    background:rgba(41, 170, 127, 0.201);
+    background: rgba(41, 170, 127, 0.201);
 }
 
 .cf-msg{
@@ -684,11 +688,20 @@ html{
     font-size: 12px;
 }
 
-.gh-body{
-    width:70%;
+
+.gh-body {
+    width: 70%;
     border: 1px solid #383c3bb4;
     border-radius: 5px;
-}
+    height: 580px;        /* FIXED height always */
+    overflow-y: auto;     /* scroll instead of stretching */
+    overflow-x: hidden;
+
+
+.gh-body::-webkit-scrollbar { height: 7px; width: 6px; }
+.gh-body::-webkit-scrollbar-track { background: #111118; }
+.gh-body::-webkit-scrollbar-thumb { background: #2e2e41c5; border-radius: 20px; }
+.gh-body::-webkit-scrollbar-thumb:hover { background: #39413e; }}
 
 .gb-commit span{
     position: absolute;
@@ -1113,6 +1126,7 @@ html{
     flex-direction: column;
     padding: 1rem;
     overflow-x: hidden;
+    
 }
 
 
@@ -1131,14 +1145,15 @@ html{
 .hero-head{
     font-size: 2.2rem;
     padding: 0;
-    line-height: 0.95;
+    line-height: 1.1;
+    margin-bottom: 6px;
 }
 
 
 .status{
     margin-top: -120px;
     margin-left: 12px;
-    margin-bottom: -1px;
+    margin-bottom: 6px;
     width: 180px;
 }
 
@@ -1161,8 +1176,9 @@ body{
     font-family: var(--font-mono);
     letter-spacing: .2px;
     text-decoration: none;
-    line-height: 1.4;
+    line-height: 1.6;
     font-size: 0.88rem;
+    margin-bottom: 3px;
 }
 
 .hero-buttons {
@@ -1171,7 +1187,7 @@ body{
     gap: 10px;
     padding-left: 0;
     padding-right: 0;
-    padding-bottom: 1rem;
+    padding-bottom: 1.1rem;
     box-sizing: border-box;
 }
 
@@ -1327,6 +1343,7 @@ body{
 .gh-body{
     width: 100%;
     height: 758px;
+    margin-bottom: 10px;
 }
 
 .gb-commit,.commit-feed{
@@ -1401,6 +1418,15 @@ body{
 
 .cu-rightside input,.cu-rightside textarea,.cu-rightside button{
     padding: 12px;
+}
+
+.footer{
+    display: flex;
+    flex-direction: column;
+    line-height: 20.5px;
+    justify-content:center;
+    font-size: 10px;
+    letter-spacing: 0px;
 }
 
 }
