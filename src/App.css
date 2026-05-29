@@ -1292,18 +1292,115 @@ body{
 .gb-2{
     padding-top: 10px;
     display: flex;
+    width: 100%;
     flex-direction: column;
-    flex: 1;
+    gap:2px;
 }
 
+  .gb-profile{
+        order: 1;
+    }
+
+    .gh-body{
+        order: 2;
+    }
+
+    .gb-3{
+        order: 3;
+    }
+
 .gb-1 input{
-   width: 60%;
+   width: 80%;
    padding: 5px;
-   background-color: #0400ff;
 }
 
 .gb-1 button{
     width: 40%;
+}
+
+.gb-1{
+    display: flex;
+    gap: 6px;
+}
+
+
+.gh-body{
+    width: 100%;
+    height: 758px;
+}
+
+.gb-commit,.commit-feed{
+    padding-left: 10px;
+}
+
+.commit-feed{
+    display: flex;
+}
+
+.gb-profile{
+    width: 100%;
+    z-index: 0;
+    margin-bottom: 11px;
+}
+
+.gb-3{
+    width: 100%;
+    padding-left: 10px;
+}
+
+.profile-body{
+    padding-top: 40px;
+    padding-left: 10px;
+}
+
+.gb-profile img{
+    left: 10px;
+}
+
+.pb1{
+    font-weight: 700;
+}
+
+.pb3{
+    font-size: 14px;
+    font-family: var(--font-mono);
+    padding-bottom: 7px;
+}
+
+.folo{
+    padding-bottom: 12px;
+}
+
+.contact-us{
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 1rem;
+    gap: 30px;
+}
+
+.hero-introo{
+    line-height: 25px;
+    width: 100%;
+}
+
+.cu-leftside{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.cu-box1,.cu-box2,.cu-box3{
+    padding: 12px;
+}
+
+.cu-rightside{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.cu-rightside input,.cu-rightside textarea,.cu-rightside button{
+    padding: 12px;
 }
 
 }
