@@ -1201,9 +1201,10 @@ body{
         width: 100%;
         display: flex;
         align-items: center;
+        letter-spacing: 1px;
         justify-content: center;
         padding: 12px;
-        font-size: 13px;
+        font-size: 15px;
         white-space: nowrap;
     }
 
@@ -1213,6 +1214,7 @@ body{
         justify-content: center;
         align-items: center;
         padding: 12px;
+        letter-spacing: 1px;
     }
 
 .hero-left {
