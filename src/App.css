@@ -1216,21 +1216,6 @@ body{
     align-items: center;
 }
 
-.hero-buttons .b1{
-    border: 2px solid rgba(169, 165, 165, 0.536);
-    background-color: var(--bg);
-    color: white;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    font-family: var(--font-mono);
-    text-transform: uppercase;
-    font-weight: 600;
-    font-size:15px;
-    text-decoration: none;
-    border-radius: 2px;
-    transition: background-color .5s;
-    transition: border .5s;
-}
 
   .hero-buttons .b1,
     .hero-buttons .b2 {
