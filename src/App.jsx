@@ -210,7 +210,7 @@ function App() {
             <a href="#github-section">
               <button className="b2">Github Activity ↓</button>
             </a>
-            <a href="public\JIYAVUR RAHMAN S - RESUME (1).pdf">
+            <a href="/Jiyavur-Rahman-Resume.pdf">
               <button className="resume-btn">Download Resume ↓</button>
             </a>
           </div>
