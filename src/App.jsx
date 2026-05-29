@@ -300,13 +300,13 @@ function App() {
               <p>
                 <span className="sno">11</span>{" "}
                 <span className="commentt text-[var(--muted)]">
-                  // Building interfaces with React ⚛️
+                  // Building React Apps ⚛️
                 </span>
               </p>
               <p>
                 <span className="sno">12</span>{" "}
                 <span className="commentt text-[var(--muted)]">
-                  // Consistency builds Phenomenal 🛠️
+                  // Consistency Matters 🛠️
                 </span>
               </p>
             </div>
