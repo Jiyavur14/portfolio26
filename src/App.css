@@ -1184,7 +1184,7 @@ body{
 .hero-buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 7px;
     padding-left: 0;
     padding-right: 0;
     padding-bottom: 1.1rem;
