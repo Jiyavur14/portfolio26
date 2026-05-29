@@ -210,7 +210,10 @@ function App() {
             <a href="#github-section">
               <button className="b2">Github Activity ↓</button>
             </a>
-            <a href="/Jiyavur-Rahman-Resume.pdf">
+            <a
+              href={`${import.meta.env.BASE_URL}Jiyavur-Rahman-Resume.pdf`}
+              download
+            >
               <button className="resume-btn">Download Resume ↓</button>
             </a>
           </div>
