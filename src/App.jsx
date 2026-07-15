@@ -418,7 +418,7 @@ function App() {
             <h2>AQI Buddy</h2>
             <p>
               AQI Buddy is a smart web application that helps users track
-              real-time air quality, journal its effects on their health, and
+              real-time air quality, journal its effects and
               receive personalized alerts, all through a simple, intuitive
               interface.
             </p>
