@@ -400,7 +400,7 @@ function sendEmail(e) {
                 <a
                   className="link1"
                   title="Github"
-                  href="https://github.com/Jiyavur14/online-room-booking-system/"
+                  href="https://github.com/Jiyavur14/AQI_Mern"
                   target="_blank"
                 >
                   💻
@@ -408,19 +408,18 @@ function sendEmail(e) {
                 <a
                   className="link1"
                   title="Live"
-                  href="https://online-room-booking-system.vercel.app/"
+                  href="https://aqi-mern-two.vercel.app/"
                   target="_blank"
                 >
                   🔗
                 </a>
               </div>
             </div>
-            <h2>ONLINE ROOM BOOKING SYSTEM</h2>
+            <h2>AQI Buddy</h2>
             <p>
-              The Online Room Booking System is a smart web application that
-              enables users to easily check room availability, make secure
-              bookings, and manage reservations through a simple and
-              user-friendly interface.
+AQI Buddy is a smart web application that lets users track real-time air quality in their city, 
+journal how they feel on high-pollution days, and get personalized alerts when AQI crosses their safe limit, 
+all through a simple and intuitive dashboard.
             </p>
             <div className="techbuttons flex gap-4">
               <p className="tb1">React</p>
