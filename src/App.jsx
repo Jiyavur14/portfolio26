@@ -122,7 +122,7 @@ function App() {
     return () => clearInterval(interval);
   }, [profile]);
 
-function sendEmail(e) {
+  function sendEmail(e) {
     e.preventDefault();
 
     const name = e.target.user_name.value.trim();
@@ -417,9 +417,10 @@ function sendEmail(e) {
             </div>
             <h2>AQI Buddy</h2>
             <p>
-AQI Buddy is a smart web application that lets users track real-time air quality in their city, 
-journal how they feel on high-pollution days, and get personalized alerts when AQI crosses their safe limit, 
-all through a simple and intuitive dashboard.
+              AQI Buddy is a smart web application that lets users track
+              real-time air quality in their city, journal how they feel on
+              high-pollution days, and get personalized alerts when AQI crosses
+              their safe limit, all through a simple and intuitive dashboard.
             </p>
             <div className="techbuttons flex gap-4">
               <p className="tb1">React</p>
