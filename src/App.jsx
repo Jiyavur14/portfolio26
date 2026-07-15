@@ -417,10 +417,10 @@ function App() {
             </div>
             <h2>AQI Buddy</h2>
             <p>
-              AQI Buddy is a smart web application that lets users track
-              real-time air quality in their city, journal how they feel on
-              high-pollution days, and get personalized alerts when AQI crosses
-              their safe limit, all through a simple and intuitive dashboard.
+              AQI Buddy is a smart web application that helps users track
+              real-time air quality, journal its effects on their health, and
+              receive personalized alerts, all through a simple, intuitive
+              interface.
             </p>
             <div className="techbuttons flex gap-4">
               <p className="tb1">React</p>
