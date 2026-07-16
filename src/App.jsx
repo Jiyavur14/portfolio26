@@ -397,14 +397,7 @@ function App() {
             <div className="phead flex justify-between items-center mb-1">
               <p className="symbol"></p>
               <div className="links flex justify-around gap-4">
-                <a
-                  className="link1"
-                  title="Github"
-                  href="https://github.com/Jiyavur14/AQI_Mern"
-                  target="_blank"
-                >
-                  💻
-                </a>
+            
                 <a
                   className="link1"
                   title="Live"
@@ -433,14 +426,7 @@ function App() {
             <div className="phead flex justify-between items-center mb-1">
               <p className="symbol"></p>
               <div className="links flex justify-around gap-4">
-                <a
-                  className="link1"
-                  title="Github"
-                  href="https://github.com/Jiyavur14/Finance-Expense-Tracker"
-                  target="_blank"
-                >
-                  💻
-                </a>
+            
                 <a
                   className="link1"
                   title="Live"
@@ -468,14 +454,7 @@ function App() {
             <div className="phead flex justify-between items-center mb-1">
               <p className="symbol"></p>
               <div className="links flex justify-around gap-4">
-                <a
-                  className="link1"
-                  title="Github"
-                  href="https://github.com/Jiyavur14/Notes_Website"
-                  target="_blank"
-                >
-                  💻
-                </a>
+               
                 <a
                   className="link1"
                   title="Live"
